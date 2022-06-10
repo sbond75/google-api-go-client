@@ -5456,6 +5456,7 @@ func (c *FilesGetCall) Do(opts ...googleapi.CallOption) (*File, error) {
 		return nil, err
 	}
 	fmt.Printf("res.Header: %+v\n", res.Header)
+	fmt.Printf("res.Body: %+v\n", res.Body)
 	ret := &File{
 		ServerResponse: googleapi.ServerResponse{
 			Header:         res.Header,
