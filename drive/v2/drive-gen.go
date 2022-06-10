@@ -1598,7 +1598,7 @@ type FileShortcutDetails struct {
 func (s *FileShortcutDetails) MarshalJSON() ([]byte, error) {
 	type NoMethod FileShortcutDetails
 	raw := NoMethod(*s)
-	return gensupport.MarshalJSON(raw, s.ForceSendFields, s.NullFields)
+	return gensupport.MarshalJSON(raw, s.ForceSendFields)//, s.NullFields)
 }
 
 // FileThumbnail: Thumbnail for the file. Only accepted on upload and
