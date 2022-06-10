@@ -1331,6 +1331,11 @@ type File struct {
 	// available.
 	SharingUser *User `json:"sharingUser,omitempty"`
 
+	// ShortcutDetails: Shortcut file details. Only populated for shortcut
+	// files, which have the mimeType field set to
+	// application/vnd.google-apps.shortcut.
+	ShortcutDetails *FileShortcutDetails `json:"shortcutDetails,omitempty"`
+	
 	// Spaces: The list of spaces which contain the file. Supported values
 	// are 'drive', 'appDataFolder' and 'photos'.
 	Spaces []string `json:"spaces,omitempty"`
@@ -1559,6 +1564,41 @@ func (s *FileLabels) MarshalJSON() ([]byte, error) {
 	type noMethod FileLabels
 	raw := noMethod(*s)
 	return gensupport.MarshalJSON(raw, s.ForceSendFields)
+}
+
+// FileShortcutDetails: Shortcut file details. Only populated for
+// shortcut files, which have the mimeType field set to
+// application/vnd.google-apps.shortcut.
+type FileShortcutDetails struct {
+	// TargetId: The ID of the file that this shortcut points to.
+	TargetId string `json:"targetId,omitempty"`
+
+	// TargetMimeType: The MIME type of the file that this shortcut points
+	// to. The value of this field is a snapshot of the target's MIME type,
+	// captured when the shortcut is created.
+	TargetMimeType string `json:"targetMimeType,omitempty"`
+
+	// ForceSendFields is a list of field names (e.g. "TargetId") to
+	// unconditionally include in API requests. By default, fields with
+	// empty values are omitted from API requests. However, any non-pointer,
+	// non-interface field appearing in ForceSendFields will be sent to the
+	// server regardless of whether the field is empty or not. This may be
+	// used to include empty fields in Patch requests.
+	ForceSendFields []string `json:"-"`
+
+	// NullFields is a list of field names (e.g. "TargetId") to include in
+	// API requests with the JSON null value. By default, fields with empty
+	// values are omitted from API requests. However, any field with an
+	// empty value appearing in NullFields will be sent to the server as
+	// null. It is an error if a field in this list has a non-empty value.
+	// This may be used to include null fields in Patch requests.
+	NullFields []string `json:"-"`
+}
+
+func (s *FileShortcutDetails) MarshalJSON() ([]byte, error) {
+	type NoMethod FileShortcutDetails
+	raw := NoMethod(*s)
+	return gensupport.MarshalJSON(raw, s.ForceSendFields, s.NullFields)
 }
 
 // FileThumbnail: Thumbnail for the file. Only accepted on upload and
